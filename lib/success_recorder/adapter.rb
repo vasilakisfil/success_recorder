@@ -1,7 +1,7 @@
 class SuccessRecorder::Adapter
   attr_reader :key
 
-  def initialize(keys)
+  def initialize(*keys)
     @key = normalize_params(keys)
   end
 
@@ -29,7 +29,7 @@ class SuccessRecorder::Adapter
     end
 
     def normalize_params(keys)
-      case key
+      case keys
       when Array
         return keys.join(':')
       else
