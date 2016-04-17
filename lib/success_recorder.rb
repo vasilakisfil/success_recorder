@@ -2,16 +2,16 @@ require 'success_recorder/version'
 require 'redis/objects'
 
 module SuccessRecorder
-  def self.success!(*keys)
-    Adapter.new(keys).success
+  def self.success!(*args)
+    Adapter.new(args).success
   end
 
-  def self.failure!(*keys)
-    Adapter.new(keys).failure
+  def self.failure!(*args)
+    Adapter.new(args).failure
   end
 
-  def self.report(*keys)
-    Adapter.new(keys).report
+  def self.report(*args)
+    Adapter.new(args).report
   end
 end
 

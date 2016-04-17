@@ -1,8 +1,8 @@
 class SuccessRecorder::Adapter
-  attr_reader :key
+  attr_reader :key, :opts
 
-  def initialize(*keys)
-    @key = normalize_params(keys)
+  def initialize(*args)
+    @key, @opts = normalize_params(args)
   end
 
   def success
@@ -29,11 +29,20 @@ class SuccessRecorder::Adapter
     end
 
     def normalize_params(keys)
-      case keys
-      when Array
-        return keys.join(':')
-      else
-        return key.to_s
+      opts = {}; key = nil
+
+      keys.each do |k|
+        if k.is_a? Hash
+          opts = k
+        else
+          if key.nil?
+            key = k
+          else
+            key = [key, k].join(':')
+          end
+        end
       end
+
+      return key, opts
     end
 end
