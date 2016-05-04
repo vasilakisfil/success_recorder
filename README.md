@@ -25,7 +25,7 @@ SuccessRecorder.failure('key')
 SuccessRecorder.report('key')
 
 
-SuccessRecorder.success(['key1', 'key2', 3])
+SuccessRecorder.success(['key1', 'key2', 3]) #the key in redis is 'key1:key2:3'
 SuccessRecorder.failure(['key1', 'key2', 3])
 SuccessRecorder.report(['key1', 'key2', 3])
 ```
